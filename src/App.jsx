@@ -1,122 +1,110 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "./assets/vite.svg";
-import heroImg from "./assets/hero.png";
 import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0);
+import Header from "./components/Header";
+import StudentList from "./components/StudentList";
+
+const students = [
+  {
+    id: 1,
+    firstName: "Amara",
+    lastName: "Johnson",
+    track: "Frontend",
+    score: 92,
+    isActive: true,
+    skills: ["React", "CSS", "TypeScript"],
+    avatar: "https://i.pravatar.cc/150?img=1",
+  },
+  {
+    id: 2,
+    firstName: "Chidi",
+    lastName: "Okafor",
+    track: "Backend",
+    score: 67,
+    isActive: true,
+    skills: ["Python", "Django"],
+    avatar: "https://i.pravatar.cc/150?img=3",
+  },
+  {
+    id: 3,
+    firstName: "Fatima",
+    lastName: "Hassan",
+    track: "Frontend",
+    score: 88,
+    isActive: false,
+    skills: ["HTML", "CSS", "JavaScript", "Vue"],
+    avatar: "https://i.pravatar.cc/150?img=5",
+  },
+  {
+    id: 4,
+    firstName: "Emeka",
+    lastName: "Nwosu",
+    track: "Mobile",
+    score: 45,
+    isActive: true,
+    skills: [],
+    avatar: "https://i.pravatar.cc/150?img=7",
+  },
+  {
+    id: 5,
+    firstName: "Zara",
+    lastName: "Ahmed",
+    track: "Frontend",
+    score: 76,
+    isActive: true,
+    skills: ["React", "Node.js"],
+    avatar: "https://i.pravatar.cc/150?img=9",
+  },
+  {
+    id: 6,
+    firstName: "David",
+    lastName: "Okwu",
+    track: "Backend",
+    score: 53,
+    isActive: false,
+    skills: ["SQL"],
+    avatar: "https://i.pravatar.cc/150?img=11",
+  },
+  {
+    id: 7,
+    firstName: "Grace",
+    lastName: "Eze",
+    track: "Mobile",
+    score: 81,
+    isActive: true,
+    skills: ["Dart", "Flutter", "Firebase"],
+    avatar: "https://i.pravatar.cc/150?img=13",
+  },
+  {
+    id: 8,
+    firstName: "Tunde",
+    lastName: "Bakare",
+    track: "Frontend",
+    score: 39,
+    isActive: true,
+    skills: ["HTML", "CSS"],
+    avatar: "https://i.pravatar.cc/150?img=15",
+  },
+];
+
+const App = () => {
+  const averageScore =
+    students.reduce((total, student) => {
+      return total + student.score;
+    }, 0) / students.length;
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app">
+      <Header
+        title="KodeCamp 6.0 — Student Dashboard"
+        studentCount={students.length}
+        averageScore={averageScore}
+      />
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <StudentList students={students} title="Student Roster">
+        <p>End of student list — {students.length} total</p>
+      </StudentList>
+    </div>
   );
-}
+};
 
 export default App;
