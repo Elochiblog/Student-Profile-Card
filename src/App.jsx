@@ -100,6 +100,11 @@ const App = () => {
         averageScore={averageScore}
       />
 
+      <div className="filter-buttons">
+        <button>Show Active Only</button>
+        <button>Show All Students</button>
+      </div>
+
       <StudentList students={students} title="Student Roster">
         <p>End of student list — {students.length} total</p>
       </StudentList>
